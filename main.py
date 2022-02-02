@@ -1,14 +1,16 @@
-import requests
+from selenium import webdriver
+import time
 from bs4 import BeautifulSoup
 import aiogram
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
+url = 'https://www.pathofexile.com/trade/search/Standard'
+browser = webdriver.Firefox(executable_path='/Users/innapilipenko/PycharmProjects/RilaiiVortex/firefoxDriver/geckodriver')
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+try:
+    browser.get(url)
+    time.sleep(10)
+except Exception as ex:
+    print(ex)
+finally:
+    browser.close()
+    browser.quit()
