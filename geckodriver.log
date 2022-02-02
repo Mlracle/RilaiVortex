@@ -1,0 +1,22 @@
+1643764495061	geckodriver	INFO	Listening on 127.0.0.1:59531
+1643764495089	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "59532" "-foreground" "-no-remote" "-profile" "/var/folders/6y/kvcnhfhn2jz10rzqfycxlv380000gn/T/rust_mozprofile4SoxT2"
+DevTools listening on ws://localhost:59532/devtools/browser/3ff68a33-49a3-7241-be71-dae068eb16dd
+1643764579831	geckodriver	INFO	Listening on 127.0.0.1:59925
+1643764580352	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "59926" "-foreground" "-no-remote" "-profile" "/var/folders/6y/kvcnhfhn2jz10rzqfycxlv380000gn/T/rust_mozprofileyddlnG"
+1643764580912	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/6y/kvcnhfhn2jz10rzqfycxlv380000gn/T/rust_mozprofileyddlnG/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 243"  data: no]
+DevTools listening on ws://localhost:59926/devtools/browser/40a20669-940a-704e-8e8a-1e997e26bdf6
+1643764583636	Marionette	INFO	Listening on port 59933
+1643764583706	Marionette	WARN	TLS certificate errors will be ignored for this session
+1643764595995	Marionette	INFO	Stopped listening on port 59933
+!!! error running onStopped callback: TypeError: callback is not a function
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1643764596526	RemoteAgent	ERROR	unable to stop listener: [Exception... "Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIWindowMediator.getEnumerator]"  nsresult: "0x8000ffff (NS_ERROR_UNEXPECTED)"  location: "JS frame :: chrome://remote/content/cdp/observers/TargetObserver.jsm :: stop :: line 64"  data: no] Stack trace: stop()@TargetObserver.jsm:64
+unwatchForTabs()@TargetList.jsm:70
+unwatchForTargets()@TargetList.jsm:37
+destructor()@TargetList.jsm:109
+close()@RemoteAgent.jsm:129
