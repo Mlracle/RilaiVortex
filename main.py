@@ -76,8 +76,7 @@ def get_items():
 
 
 def main():
-    for i in data:
-        print(i)
+    get_items()
 
 
 if __name__ == '__main__':
