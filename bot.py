@@ -1,10 +1,13 @@
 import logging
-from aiogram import Bot, Dispatcher, executor, types
+import time
 from os import getenv
 from sys import exit
-from main import data, main
-import time
+
+from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher.filters import Text
+
+from main import data, get_items
+
 
 bot_token = getenv("BOT_TOKEN")
 if not bot_token:
@@ -32,6 +35,7 @@ async def cmd_start(message: types.Message):
 async def send_data(message: types.Message):
     await message.answer('Пожалуйста подождите...')
     for index, i in enumerate(data):
+        explicits = "\n".join(i["explicitMod"])
         card = f'{i["name"]}\n' \
                f'{i["type_name"]}\n' \
                f'{"-" * 60}\n' \
@@ -40,10 +44,7 @@ async def send_data(message: types.Message):
                f'{"-" * 60}\n' \
                f'{i["implicitMod"]}\n' \
                f'{"-" * 60}\n' \
-               f'{i["explicitMod"][0]}\n' \
-               f'{i["explicitMod"][1]}\n' \
-               f'{i["explicitMod"][2]}\n' \
-               f'{i["explicitMod"][3]}\n' \
+               f'{explicits}' \
                f'{"-" * 60}\n' \
                f'{i["Currency"]}\n'
         if index % 20 == 0:
@@ -53,5 +54,5 @@ async def send_data(message: types.Message):
 
 if __name__ == "__main__":
     # Запуск бота
-    main()
+    get_items()
     executor.start_polling(dp, skip_updates=True)
