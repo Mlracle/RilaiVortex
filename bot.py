@@ -23,11 +23,15 @@ logging.basicConfig(level=logging.INFO)
 # Хэндлер на команду /test1
 @dp.message_handler(commands="start")
 async def cmd_start(message: types.Message):
+
     keyboard = types.ReplyKeyboardMarkup()
-    button_1 = types.KeyboardButton(text="HeadHunter")
+    button_1 = types.KeyboardButton(text="Всего +#% к сопротивлению холоду")
     keyboard.add(button_1)
-    button_2 = "HeadHunter"
+    button_2 = "Всего +#% к сопротивлению огню"
     keyboard.add(button_2)
+    button_3 = "Всего +#% к сопротивлению молнии"
+    keyboard.add(button_3)
+
     await message.answer("Начнем", reply_markup=keyboard)
 
 
@@ -54,5 +58,5 @@ async def send_data(message: types.Message):
 
 if __name__ == "__main__":
     # Запуск бота
-    get_items()
+    #get_items()
     executor.start_polling(dp, skip_updates=True)
