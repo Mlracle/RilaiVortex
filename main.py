@@ -1,13 +1,14 @@
 import time
 from pathlib import Path
 from random import randint
+from os import getenv
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-# geckodriver = Path("geckodriver.exe").absolute()
-geckodriver = 'C:\\Users\\artem\\PycharmProjects\\RilaiVortex\\firefoxdriverWindows\\geckodriver.exe'
+geckodriver = Path("geckodriver.exe").absolute()
+# geckodriver = getenv("TESTPATH")
 url = "https://ru.pathofexile.com/trade/search/Standard"
 data = []
 
