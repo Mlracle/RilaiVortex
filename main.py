@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+
 geckodriver = Path("geckodriver.exe").absolute()
 # geckodriver = getenv("TESTPATH")
 url = "https://ru.pathofexile.com/trade/search/Standard"
@@ -16,14 +17,19 @@ data = []
 def rand_time(min_delay, max_delay):
     time.sleep(randint(min_delay, max_delay))
 
+
 def get_page_source(item_name, item_type, defence_filter, item_filter):
     browser = webdriver.Firefox(executable_path=str(geckodriver))
     try:
         browser.get(url)
-        rand_time(10, 12)
+        rand_time(6, 8)
 
-        search_bar = browser.find_element("css selector",
-                                          ".multiselect__input")
+        list(map(lambda x: x.click(), browser.find_elements("css selector", ".btn.toggle-btn")[1:]))
+
+        search_bar = browser.find_element(
+            "css selector",
+            ".multiselect__input"
+        )
         search_btn = browser.find_element("css selector", ".btn.search-btn")
 
         if item_name:
@@ -41,12 +47,16 @@ def get_page_source(item_name, item_type, defence_filter, item_filter):
             time.sleep(1)
             item_type_bar.send_keys(Keys.ENTER)
 
-        #input defence stats
-        # defence_bar = browser.find_element("css selector",
-        #                                   ".filter filter-property")
-        # defence_bar[0].send_keys(defence_filter[0])
-        # time.sleep(1)
-        # defence_bar[0].send_keys(Keys.ENTER)
+        # input defence stats
+        defence_bar = browser.find_elements(
+            "css selector",
+            ".filter.filter-property:not(.full-span)"
+            )
+        for i in range(0, 3):
+            defence_bar[i].send_keys(defence_filter[i])
+        defence_bar[0].send_keys(defence_filter[0])
+        time.sleep(1)
+        defence_bar[0].send_keys(Keys.ENTER)
 
         # input item suffixes
         if item_filter:
@@ -84,8 +94,10 @@ def get_items():
 
     for item_row in items_list:
         item = {
-            "name": item_row.find(class_="itemName").find("span",
-                                                          class_="lc").text,
+            "name": item_row.find(class_="itemName").find(
+                "span",
+                class_="lc"
+            ).text,
             "type_name": item_row.find(class_="itemName typeLine")
                 .find("span", class_="lc")
                 .text,
@@ -115,6 +127,8 @@ def get_items():
 
 if __name__ == "__main__":
     # get_items()
-    get_page_source('', 'Пояс', [90], ['Всего +#% к сопротивлению холоду',
-                                 'Всего +#% к сопротивлению огню',
-                                 'Всего +#% к сопротивлению молнии'])
+    get_page_source(
+        '', 'Пояс', [90], ['Всего +#% к сопротивлению холоду',
+                           'Всего +#% к сопротивлению огню',
+                           'Всего +#% к сопротивлению молнии']
+    )
